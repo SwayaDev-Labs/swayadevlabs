@@ -12,30 +12,28 @@
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
-  <div class="nav-container">
-    <div class="logo">
-      <img src="logo.png" alt="Swayadev Labs" class="logo-img" />
+    <div class="nav-container">
+      <div class="logo">
+        <img src="logo.png" alt="Swayadev Labs" class="logo-img" />
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#roi">ROI Calculator</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
     </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#why-us">Why Us</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
-
-
-
+  </nav>
 
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg-glow"></div>
     <div class="hero-content">
-      <div class="badge">🤖 Growth Intensified by AI</div>
+      <div class="badge">🤖 Powered by AI</div>
       <h1>Automate Smarter.<br/><span>Grow Faster.</span></h1>
       <p>Swayadev Labs builds intelligent automation systems that eliminate repetitive tasks, supercharge your workflows, and let your team focus on what matters.</p>
       <div class="hero-btns">
@@ -158,74 +156,166 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="section-label">Get In Touch</div>
-  <h2 class="section-title">Meet the Founders</h2>
-  <p class="section-sub">Have a project in mind? Reach out to us directly — we'd love to hear from you.</p>
+  <!-- ROI CALCULATOR -->
+  <section class="roi" id="roi">
+    <div class="section-label">ROI Calculator</div>
+    <h2 class="section-title">See Your Potential Savings</h2>
+    <p class="section-sub">Estimate how much time and money you can save by automating with AI agents.</p>
 
-  <div class="founders-grid">
+    <div class="roi-card">
+      <!-- LEFT: INPUTS -->
+      <div class="roi-inputs">
+        <h3 class="roi-sub-title"><i class="fas fa-sliders-h"></i> Adjust Your Numbers</h3>
 
-    <!-- Founder 1 -->
-    <div class="founder-card">
-      <div class="founder-avatar">TJ</div>
-      <div class="founder-info">
-        <h3>Tanish P Jadhav</h3>
-        <span class="founder-role">CEO & Founder</span>
-        <div class="founder-contacts">
-          <a href="tel:+916362615200">
-            <i class="fas fa-phone"></i> +91 6362615200
-          </a>
-          <a href="mailto:tanishpjadhav@swayadevlabs.com">
-            <i class="fas fa-envelope"></i> tanishpjadhav@swayadevlabs.com
-          </a>
-          <a href="https://www.linkedin.com/in/tanish-p-jadhav/" target="_blank">
-            <i class="fab fa-linkedin"></i> linkedin.com/in/tanish-p-jadhav
-          </a>
+        <div class="roi-field">
+          <label>Employees Doing Manual Work</label>
+          <div class="roi-slider-row">
+            <input type="range" min="1" max="100" value="10" id="empCount" oninput="calcROI()"/>
+            <span class="roi-val" id="empCountVal">10</span>
+          </div>
+        </div>
+
+        <div class="roi-field">
+          <label>Avg Monthly Salary per Employee (₹)</label>
+          <div class="roi-slider-row">
+            <input type="range" min="10000" max="200000" step="5000" value="40000" id="salary" oninput="calcROI()"/>
+            <span class="roi-val" id="salaryVal">₹40,000</span>
+          </div>
+        </div>
+
+        <div class="roi-field">
+          <label>Hours on Repetitive Tasks / Employee / Day</label>
+          <div class="roi-slider-row">
+            <input type="range" min="1" max="8" value="3" id="hours" oninput="calcROI()"/>
+            <span class="roi-val" id="hoursVal">3 hrs</span>
+          </div>
+        </div>
+
+        <div class="roi-field">
+          <label>Errors / Rework Cases per Month</label>
+          <div class="roi-slider-row">
+            <input type="range" min="0" max="500" step="10" value="50" id="errors" oninput="calcROI()"/>
+            <span class="roi-val" id="errorsVal">50</span>
+          </div>
+        </div>
+
+        <div class="roi-field">
+          <label>Avg Cost per Error / Rework (₹)</label>
+          <div class="roi-slider-row">
+            <input type="range" min="100" max="50000" step="100" value="2000" id="errorCost" oninput="calcROI()"/>
+            <span class="roi-val" id="errorCostVal">₹2,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="roi-divider"></div>
+
+      <!-- RIGHT: RESULTS -->
+      <div class="roi-results">
+        <h3 class="roi-sub-title"><i class="fas fa-chart-bar"></i> Your Estimated Savings</h3>
+
+        <div class="roi-result-highlight">
+          <div class="roi-result-big">
+            <span>Monthly Savings</span>
+            <h2 id="monthlySaved">₹0</h2>
+          </div>
+          <div class="roi-result-big">
+            <span>Yearly Savings</span>
+            <h2 id="yearlySaved">₹0</h2>
+          </div>
+        </div>
+
+        <div class="roi-result-grid">
+          <div class="roi-result-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <p>Hours Saved/Month</p>
+              <h4 id="hoursSaved">0 hrs</h4>
+            </div>
+          </div>
+          <div class="roi-result-item">
+            <i class="fas fa-chart-pie"></i>
+            <div>
+              <p>Productivity Gain</p>
+              <h4 id="productivity">0%</h4>
+            </div>
+          </div>
+          <div class="roi-result-item">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+              <p>Error Cost Eliminated</p>
+              <h4 id="errorSaved">₹0</h4>
+            </div>
+          </div>
+          <div class="roi-result-item">
+            <i class="fas fa-users"></i>
+            <div>
+              <p>Labor Cost Recovered</p>
+              <h4 id="laborSaved">₹0</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="roi-note">
+          💡 Based on 80% labor automation efficiency and 90% error elimination by AI agents.
+        </div>
+
+        <a href="#contact" class="btn-primary" style="width:100%; justify-content:center; margin-top: 8px;">
+          🚀 Get a Free Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Meet the Founders</h2>
+    <p class="section-sub">Have a project in mind? Reach out to us directly — we'd love to hear from you.</p>
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div class="founder-avatar">TJ</div>
+        <div class="founder-info">
+          <h3>Tanish P Jadhav</h3>
+          <span class="founder-role">CEO & Co-Founder</span>
+          <div class="founder-contacts">
+            <a href="tel:+916362615200"><i class="fas fa-phone"></i> +91 6362615200</a>
+            <a href="mailto:tanishpjadhav@swayadevlabs.com"><i class="fas fa-envelope"></i> tanishpjadhav@swayadevlabs.com</a>
+            <a href="https://www.linkedin.com/in/tanish-p-jadhav/" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/tanish-p-jadhav</a>
+          </div>
+        </div>
+      </div>
+      <div class="founder-card">
+        <div class="founder-avatar">SP</div>
+        <div class="founder-info">
+          <h3>Sarvesh Patil</h3>
+          <span class="founder-role">CTO & Co-Founder</span>
+          <div class="founder-contacts">
+            <a href="tel:+918310530562"><i class="fas fa-phone"></i> +91 8310530562</a>
+            <a href="mailto:sarveshpatil@swayadevlabs.com"><i class="fas fa-envelope"></i> sarveshpatil@swayadevlabs.com</a>
+            <a href="https://www.linkedin.com/in/sarvesh-patil-13b0a2276/" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/sarvesh-patil-13b0a2276</a>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Founder 2 -->
-    <div class="founder-card">
-      <div class="founder-avatar">SP</div>
-      <div class="founder-info">
-        <h3>Sarvesh Patil</h3>
-        <span class="founder-role">CTO & Co-Founder</span>
-        <div class="founder-contacts">
-          <a href="tel:+918310530562">
-            <i class="fas fa-phone"></i> +91 8310530562
-          </a>
-          <a href="mailto:sarveshpatil@swayadevlabs.com">
-            <i class="fas fa-envelope"></i> sarveshpatil@swayadevlabs.com
-          </a>
-          <a href="https://www.linkedin.com/in/sarvesh-patil-13b0a2276/" target="_blank">
-            <i class="fab fa-linkedin"></i> linkedin.com/in/sarvesh-patil-13b0a2276
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="logo">SwayaDev<span> Labs</span></div>
-      <p>Intelligent Automations for the Modern Business.</p>
+      <img src="logo.png" alt="Swayadev Labs" class="footer-logo-img"/>
+      <p>Automation That Never Sleeps.</p>
       <div class="footer-links">
         <a href="#home">Home</a>
         <a href="#services">Services</a>
+        <a href="#roi">ROI Calculator</a>
         <a href="#contact">Contact</a>
       </div>
-      <p class="footer-copy">© 2026 SwayaDev Labs. All rights reserved.</p>
+      <p class="footer-copy">© 2026 Swayadev Labs. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-
