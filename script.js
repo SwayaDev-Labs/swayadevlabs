@@ -1,20 +1,18 @@
-// Navbar scroll effect
+// Navbar scroll
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Hamburger menu
+// Hamburger
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
+hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// Animated counters
+// Counters
 const counters = document.querySelectorAll('.counter');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -33,8 +31,8 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 counters.forEach(c => observer.observe(c));
 
-// Scroll reveal animations
-const revealElements = document.querySelectorAll('.service-card, .why-item, .stat-item');
+// Scroll reveal
+const revealElements = document.querySelectorAll('.service-card, .why-item, .stat-item, .founder-card');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
@@ -53,10 +51,35 @@ revealElements.forEach(el => {
   revealObserver.observe(el);
 });
 
-// Contact form
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  document.getElementById('successMsg').style.display = 'block';
-  this.reset();
-  setTimeout(() => document.getElementById('successMsg').style.display = 'none', 5000);
-});
+// ROI Calculator
+function calcROI() {
+  const emp = +document.getElementById('empCount').value;
+  const salary = +document.getElementById('salary').value;
+  const hours = +document.getElementById('hours').value;
+  const errors = +document.getElementById('errors').value;
+  const errorCost = +document.getElementById('errorCost').value;
+
+  document.getElementById('empCountVal').textContent = emp;
+  document.getElementById('salaryVal').textContent = '₹' + salary.toLocaleString('en-IN');
+  document.getElementById('hoursVal').textContent = hours + ' hrs';
+  document.getElementById('errorsVal').textContent = errors;
+  document.getElementById('errorCostVal').textContent = '₹' + errorCost.toLocaleString('en-IN');
+
+  const workingDays = 26;
+  const hourlyRate = salary / (workingDays * 8);
+  const laborSaved = Math.round(emp * hourlyRate * hours * workingDays * 0.80);
+  const errorSaved = Math.round(errors * errorCost * 0.90);
+  const monthlySaved = laborSaved + errorSaved;
+  const yearlySaved = monthlySaved * 12;
+  const totalHours = Math.round(emp * hours * workingDays * 0.80);
+  const productivityGain = Math.round((hours / 8) * 80);
+
+  document.getElementById('monthlySaved').textContent = '₹' + monthlySaved.toLocaleString('en-IN');
+  document.getElementById('yearlySaved').textContent = '₹' + yearlySaved.toLocaleString('en-IN');
+  document.getElementById('hoursSaved').textContent = totalHours.toLocaleString('en-IN') + ' hrs';
+  document.getElementById('productivity').textContent = productivityGain + '%';
+  document.getElementById('errorSaved').textContent = '₹' + errorSaved.toLocaleString('en-IN');
+  document.getElementById('laborSaved').textContent = '₹' + laborSaved.toLocaleString('en-IN');
+}
+
+calcROI();
