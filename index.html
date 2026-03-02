@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Swayadev Labs – AI Automations</title>
+  <title>SwayaDev Labs AI Automations</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -14,14 +14,16 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="logo">
-        <img src="logo.png" alt="Swayadev Labs" class="logo-img" />
+        <img src="logo.png" alt="SwayaDev Labs" class="logo-img" />
       </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home">Home</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#about">About Us</a></li>
         <li><a href="#why-us">Why Us</a></li>
         <li><a href="#roi">ROI Calculator</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="#founders">Our Founders</a></li>
       </ul>
       <div class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
@@ -33,7 +35,6 @@
   <section class="hero" id="home">
     <div class="hero-bg-glow"></div>
     <div class="hero-content">
-      <div class="badge">🤖 Growth intensified by AI</div>
       <h1>Automate Smarter.<br/><span>Grow Faster.</span></h1>
       <p>SwayaDev Labs builds intelligent automation systems that eliminate repetitive tasks, supercharge your workflows, and let your team focus on what matters.</p>
       <div class="hero-btns">
@@ -54,11 +55,11 @@
   <section class="stats">
     <div class="stats-container">
       <div class="stat-item">
-        <h2 class="counter" data-target="100">0</h2>
+        <h2 class="counter" data-target="150">0</h2>
         <p>Projects Delivered</p>
       </div>
       <div class="stat-item">
-        <h2 class="counter" data-target="95">0</h2>
+        <h2 class="counter" data-target="98">0</h2>
         <p>Client Satisfaction %</p>
       </div>
       <div class="stat-item">
@@ -106,7 +107,46 @@
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-envelope-open-text"></i></div>
         <h3>Email & Lead Automation</h3>
-        <p>Automate outreach, follow-ups, and lead nurturing with AI-personalized email sequences.</p>
+        <p>Automate outreach, follow-ups, and lead nurturing with AI personalized email sequences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section class="about" id="about">
+    <div class="about-top">
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">We at SwayaDev Labs</h2>
+      <p class="section-sub">Are a team of AI engineers and automation specialists on a mission to make intelligent automation accessible to every business — big or small.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-story">
+        <h3>Our Story</h3>
+        <p>SwayaDev Labs was founded with one belief <span class="highlight-text">businesses shouldn't waste human potential on repetitive work.</span> We saw companies losing thousands of hours every month to manual processes, copy-pasting data, chasing follow-ups, and fixing preventable errors.</p>
+        <p>So we built a team that combines deep AI expertise with real business understanding. We don't just automate we redesign how your business operates, replacing manual bottlenecks with intelligent systems that work 24/7 without breaks, errors, or delays.</p>
+        <p>Today, SwayaDev Labs helps businesses across industries save time, cut costs, and scale faster using custom-built AI automation systems.</p>
+      </div>
+      <div class="about-values">
+        <div class="value-card">
+          <i class="fas fa-bullseye"></i>
+          <h4>Our Mission</h4>
+          <p>To eliminate manual inefficiencies from every business using the power of AI automation.</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-eye"></i>
+          <h4>Our Vision</h4>
+          <p>A world where every business regardless of size runs on intelligent, self-operating systems.</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-heart"></i>
+          <h4>Our Values</h4>
+          <p>Transparency, speed, and results. We measure success only by the real impact we create for our clients.</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-handshake"></i>
+          <h4>Our Promise</h4>
+          <p>Every solution we build is custom, tested, and backed by ongoing support not a one-time delivery.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -114,7 +154,7 @@
   <!-- WHY US -->
   <section class="why-us" id="why-us">
     <div class="why-content">
-      <div class="section-label">Why Swayadev Labs</div>
+      <div class="section-label">Why SwayaDev Labs</div>
       <h2 class="section-title">Built for Results, Not Just Demos</h2>
       <div class="why-list">
         <div class="why-item">
@@ -161,12 +201,9 @@
     <div class="section-label">ROI Calculator</div>
     <h2 class="section-title">See Your Potential Savings</h2>
     <p class="section-sub">Estimate how much time and money you can save by automating with AI agents.</p>
-
     <div class="roi-card">
-      <!-- LEFT: INPUTS -->
       <div class="roi-inputs">
         <h3 class="roi-sub-title"><i class="fas fa-sliders-h"></i> Adjust Your Numbers</h3>
-
         <div class="roi-field">
           <label>Employees Doing Manual Work</label>
           <div class="roi-slider-row">
@@ -174,7 +211,6 @@
             <span class="roi-val" id="empCountVal">10</span>
           </div>
         </div>
-
         <div class="roi-field">
           <label>Avg Monthly Salary per Employee (₹)</label>
           <div class="roi-slider-row">
@@ -182,7 +218,6 @@
             <span class="roi-val" id="salaryVal">₹40,000</span>
           </div>
         </div>
-
         <div class="roi-field">
           <label>Hours on Repetitive Tasks / Employee / Day</label>
           <div class="roi-slider-row">
@@ -190,7 +225,6 @@
             <span class="roi-val" id="hoursVal">3 hrs</span>
           </div>
         </div>
-
         <div class="roi-field">
           <label>Errors / Rework Cases per Month</label>
           <div class="roi-slider-row">
@@ -198,7 +232,6 @@
             <span class="roi-val" id="errorsVal">50</span>
           </div>
         </div>
-
         <div class="roi-field">
           <label>Avg Cost per Error / Rework (₹)</label>
           <div class="roi-slider-row">
@@ -207,14 +240,9 @@
           </div>
         </div>
       </div>
-
-      <!-- DIVIDER -->
       <div class="roi-divider"></div>
-
-      <!-- RIGHT: RESULTS -->
       <div class="roi-results">
         <h3 class="roi-sub-title"><i class="fas fa-chart-bar"></i> Your Estimated Savings</h3>
-
         <div class="roi-result-highlight">
           <div class="roi-result-big">
             <span>Monthly Savings</span>
@@ -225,7 +253,6 @@
             <h2 id="yearlySaved">₹0</h2>
           </div>
         </div>
-
         <div class="roi-result-grid">
           <div class="roi-result-item">
             <i class="fas fa-clock"></i>
@@ -256,12 +283,10 @@
             </div>
           </div>
         </div>
-
         <div class="roi-note">
-          💡 Based on 80% labor automation efficiency and 90% error elimination by AI agents.
+          Based on 80% labor automation efficiency and 90% error elimination by AI agents.
         </div>
-
-        <a href="#contact" class="btn-primary" style="width:100%; justify-content:center; margin-top: 8px;">
+        <a href="#contact" class="btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
           🚀 Get a Free Consultation
         </a>
       </div>
@@ -270,55 +295,129 @@
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
-    <div class="section-label">Get In Touch</div>
-    <h2 class="section-title">Meet the Founders</h2>
-    <p class="section-sub">Have a project in mind? Reach out to us directly we'd love to hear from you.</p>
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">Contact Us</div>
+        <h2 class="section-title">Let's Build Something<br/><span>Intelligent Together</span></h2>
+        <p class="section-sub">Fill in your details and we'll get back to you within 24 hours with a free consultation.</p>
+      </div>
+      <div class="contact-form-wrap">
+        <h3>Send Us a Message</h3>
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+
+          <!-- Web3Forms Config -->
+          <input type="hidden" name="access_key" value="97d4f446-0b6a-4288-a774-8020ad5adff2"/>
+          <input type="hidden" name="subject" value="New Lead - SwayaDev Labs Website"/>
+          <input type="hidden" name="from_name" value="SwayaDev Labs Contact Form"/>
+          <input type="hidden" name="redirect" value="false"/>
+          <input type="checkbox" name="botcheck" style="display:none"/>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" name="Full Name" placeholder="Virat Kohli" required />
+            </div>
+            <div class="form-group">
+              <label>Company Name *</label>
+              <input type="text" name="Company Name" placeholder="XYZ Inc." required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email ID *</label>
+              <input type="email" name="Email" placeholder="virat@xyz.com" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" name="Phone" placeholder="+91 xxxxxxxxxx" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>What do you want to automate?</label>
+            <textarea name="Message" placeholder="Describe your workflow or automation needs..." rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+        <div class="contact-success" id="successMsg">✅ Thanks! We'll reach out within 24 hours.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET OUR FOUNDERS -->
+  <section class="founders" id="founders">
+    <div class="section-label">The People</div>
+    <h2 class="section-title">Meet Our Founders</h2>
+    <p class="section-sub">The minds behind SwayaDev Labs — reach out to us directly anytime.</p>
     <div class="founders-grid">
+
       <div class="founder-card">
-        <div class="founder-avatar">TJ</div>
+        <div class="founder-avatar-wrap">
+          <div class="founder-avatar">TJ</div>
+          <div class="founder-glow"></div>
+        </div>
         <div class="founder-info">
           <h3>Tanish P Jadhav</h3>
           <span class="founder-role">Chief Executive Officer</span>
+          <p>Leads vision, strategy, and client relationships. Passionate about making AI accessible to every business.</p>
           <div class="founder-contacts">
-            <a href="tel:+916362615200"><i class="fas fa-phone"></i> +91 6362615200</a>
-            <a href="mailto:tanishpjadhav@swayadevlabs.com"><i class="fas fa-envelope"></i> tanishpjadhav@swayadevlabs.com</a>
-            <a href="https://www.linkedin.com/in/tanish-p-jadhav/" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/tanish-p-jadhav</a>
+            <a href="tel:+916362615200">
+              <i class="fas fa-phone"></i> +91 6362615200
+            </a>
+            <a href="mailto:tanishpjadhav@swayadevlabs.com">
+              <i class="fas fa-envelope"></i> tanishpjadhav@swayadevlabs.com
+            </a>
+            <a href="https://www.linkedin.com/in/tanish-p-jadhav/" target="_blank">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
           </div>
         </div>
       </div>
+
       <div class="founder-card">
-        <div class="founder-avatar">SP</div>
+        <div class="founder-avatar-wrap">
+          <div class="founder-avatar">SP</div>
+          <div class="founder-glow"></div>
+        </div>
         <div class="founder-info">
           <h3>Sarvesh Patil</h3>
-          <span class="founder-role">Chief Technical Officer</span>
+          <span class="founder-role">Chief Technology Officer</span>
+          <p>Architects the AI systems and automation pipelines that power every SwayaDev Labs solution.</p>
           <div class="founder-contacts">
-            <a href="tel:+918310530562"><i class="fas fa-phone"></i> +91 8310530562</a>
-            <a href="mailto:sarveshpatil@swayadevlabs.com"><i class="fas fa-envelope"></i> sarveshpatil@swayadevlabs.com</a>
-            <a href="https://www.linkedin.com/in/sarvesh-patil-13b0a2276/" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/sarvesh-patil-13b0a2276</a>
+            <a href="tel:+918310530562">
+              <i class="fas fa-phone"></i> +91 8310530562
+            </a>
+            <a href="mailto:sarveshpatil@swayadevlabs.com">
+              <i class="fas fa-envelope"></i> sarveshpatil@swayadevlabs.com
+            </a>
+            <a href="https://www.linkedin.com/in/sarvesh-patil-13b0a2276/" target="_blank">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <img src="logo.png" alt="Swayadev Labs" class="footer-logo-img"/>
+      <img src="logo.png" alt="SwayaDev Labs" class="footer-logo-img"/>
       <p>Automation That Never Sleeps.</p>
       <div class="footer-links">
         <a href="#home">Home</a>
         <a href="#services">Services</a>
+        <a href="#about">About Us</a>
         <a href="#roi">ROI Calculator</a>
         <a href="#contact">Contact</a>
+        <a href="#founders">Our Founders</a>
       </div>
-      <p class="footer-copy">© 2026 Swayadev Labs. All rights reserved.</p>
+      <p class="footer-copy">© 2026 SwayaDev Labs. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
