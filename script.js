@@ -1,85 +1,128 @@
-// Navbar scroll
-const navbar = document.getElementById('navbar');
+const topbar = document.getElementById('topbar');
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
+  if (topbar) topbar.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// Hamburger
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
+const cursorGlow = document.querySelector('.cursor-glow');
+window.addEventListener('mousemove', (e) => {
+  if (!cursorGlow) return;
+  cursorGlow.style.left = `${e.clientX}px`;
+  cursorGlow.style.top = `${e.clientY}px`;
 });
 
-// Counters
-const counters = document.querySelectorAll('.counter');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const target = +entry.target.getAttribute('data-target');
-      let count = 0;
-      const step = Math.ceil(target / 60);
-      const interval = setInterval(() => {
-        count += step;
-        if (count >= target) { entry.target.textContent = target + '+'; clearInterval(interval); }
-        else entry.target.textContent = count;
-      }, 30);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
-counters.forEach(c => observer.observe(c));
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('swayadev-theme');
 
-// Scroll reveal
-const revealElements = document.querySelectorAll('.service-card, .why-item, .stat-item, .founder-card');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }, i * 100);
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-revealElements.forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  revealObserver.observe(el);
-});
-
-// ROI Calculator
-function calcROI() {
-  const emp = +document.getElementById('empCount').value;
-  const salary = +document.getElementById('salary').value;
-  const hours = +document.getElementById('hours').value;
-  const errors = +document.getElementById('errors').value;
-  const errorCost = +document.getElementById('errorCost').value;
-
-  document.getElementById('empCountVal').textContent = emp;
-  document.getElementById('salaryVal').textContent = '₹' + salary.toLocaleString('en-IN');
-  document.getElementById('hoursVal').textContent = hours + ' hrs';
-  document.getElementById('errorsVal').textContent = errors;
-  document.getElementById('errorCostVal').textContent = '₹' + errorCost.toLocaleString('en-IN');
-
-  const workingDays = 26;
-  const hourlyRate = salary / (workingDays * 8);
-  const laborSaved = Math.round(emp * hourlyRate * hours * workingDays * 0.80);
-  const errorSaved = Math.round(errors * errorCost * 0.90);
-  const monthlySaved = laborSaved + errorSaved;
-  const yearlySaved = monthlySaved * 12;
-  const totalHours = Math.round(emp * hours * workingDays * 0.80);
-  const productivityGain = Math.round((hours / 8) * 80);
-
-  document.getElementById('monthlySaved').textContent = '₹' + monthlySaved.toLocaleString('en-IN');
-  document.getElementById('yearlySaved').textContent = '₹' + yearlySaved.toLocaleString('en-IN');
-  document.getElementById('hoursSaved').textContent = totalHours.toLocaleString('en-IN') + ' hrs';
-  document.getElementById('productivity').textContent = productivityGain + '%';
-  document.getElementById('errorSaved').textContent = '₹' + errorSaved.toLocaleString('en-IN');
-  document.getElementById('laborSaved').textContent = '₹' + laborSaved.toLocaleString('en-IN');
+if (savedTheme === 'light') {
+  document.body.classList.add('light-mode');
 }
 
-calcROI();
+if (themeToggle) {
+  themeToggle.innerHTML = document.body.classList.contains('light-mode')
+    ? '<i class="fas fa-moon"></i>'
+    : '<i class="fas fa-sun"></i>';
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const isLight = document.body.classList.contains('light-mode');
+    localStorage.setItem('swayadev-theme', isLight ? 'light' : 'dark');
+    themeToggle.innerHTML = isLight
+      ? '<i class="fas fa-moon"></i>'
+      : '<i class="fas fa-sun"></i>';
+  });
+}
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+}
+
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = +el.getAttribute('data-target');
+    let current = 0;
+    const step = Math.max(1, Math.ceil(target / 50));
+
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        el.textContent = target + '+';
+        clearInterval(timer);
+      } else {
+        el.textContent = current;
+      }
+    }, 35);
+
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.35 });
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+const animatedEls = document.querySelectorAll('.reveal, .reveal-left, .zoom-reveal, .stagger-up');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    const el = entry.target;
+
+    if (el.classList.contains('stagger-up') && el.parentElement) {
+      const siblings = [...el.parentElement.querySelectorAll('.stagger-up')];
+      siblings.forEach((item, index) => {
+        setTimeout(() => item.classList.add('visible'), index * 120);
+      });
+    } else {
+      el.classList.add('visible');
+    }
+
+    revealObserver.unobserve(el);
+  });
+}, { threshold: 0.14 });
+
+animatedEls.forEach(el => revealObserver.observe(el));
+
+const heroParallax = document.querySelector('.hero-parallax');
+window.addEventListener('scroll', () => {
+  if (!heroParallax) return;
+  const y = window.scrollY * 0.08;
+  heroParallax.style.transform = `translateY(${y}px)`;
+});
+
+document.querySelectorAll('[data-slider]').forEach(slider => {
+  const track = slider.querySelector('.testimonial-track');
+  const dots = slider.querySelectorAll('.slider-dot');
+  let index = 0;
+
+  function updateSlider(i) {
+    if (!track) return;
+    track.style.transform = `translateX(-${i * 100}%)`;
+    dots.forEach((dot, idx) => dot.classList.toggle('active', idx === i));
+  }
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      index = idx;
+      updateSlider(index);
+    });
+  });
+
+  if (dots.length > 1) {
+    setInterval(() => {
+      index = (index + 1) % dots.length;
+      updateSlider(index);
+    }, 3500);
+  }
+
+  updateSlider(index);
+});
